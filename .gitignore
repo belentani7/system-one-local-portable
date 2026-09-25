@@ -1,0 +1,34 @@
+# Dependencias
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Entorno y secretos
+.env
+.env.*
+*.local
+*.pem
+*.key
+credentials.json
+api-keys*.txt
+
+# Build y dist
+dist/
+build/
+out/
+target/
+*.tgz
+
+# Logs y temporales
+*.log
+*.pid
+.tmp/
+tmp/
+
+# IDE y SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

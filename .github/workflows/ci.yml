@@ -1,0 +1,28 @@
+name: ci
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python
+        if: hashFiles('**/requirements.txt', '**/pyproject.toml') != ''
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Node
+        if: hashFiles('**/package.json') != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Instalar y compilar Python
+        if: hashFiles('**/requirements.txt') != ''
+        run: pip install -r requirements.txt || true
+      - name: Instalar y compilar Node
+        if: hashFiles('**/package.json') != ''
+        run: npm ci --if-present || npm install --if-present
